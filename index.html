@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-s cal e=1.0">
+    <title>BMI Rechner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Setze die Schriftart auf Inter */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Heller Hintergrund */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#10b981', /* Emerald Green */
+                        'secondary': '#f97316', /* Orange */
+                    }
+                }
+            }
+        }
+
+        // Funktion zur Klassifizierung des BMI und zur Auswahl der Farbe
+        function getBmiClassification(bmi) {
+            let category = '';
+            let color = '';
+
+            if (bmi < 18.5) {
+                category = 'Untergewicht';
+                color = 'text-blue-500';
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                category = 'Normalgewicht';
+                color = 'text-primary'; /* Grün */
+            } else if (bmi >= 25.0 && bmi <= 29.9) {
+                category = 'Übergewicht';
+                color = 'text-secondary'; /* Orange */
+            } else {
+                category = 'Adipositas';
+                color = 'text-red-600';
+            }
+
+            return { category, color };
+        }
+
+        // Hauptfunktion zur Berechnung und Anzeige des BMI
+        function berechneBmi() {
+            // Elemente abrufen
+            const gewichtElement = document.getElementById('gewicht');
+            const groesseElement = document.getElementById('groesse');
+            const ergebnisDiv = document.getElementById('ergebnis');
+            const meldungDiv = document.getElementById('meldung');
+
+            // Eingabewerte auslesen und zu Zahlen konvertieren
+            const gewicht = parseFloat(gewichtElement.value); // in kg
+            const groesseCm = parseFloat(groesseElement.value); // in cm
+
+            // Grundlegende Validierung
+            if (isNaN(gewicht) || isNaN(groesseCm) || gewicht <= 0 || groesseCm <= 0) {
+                ergebnisDiv.innerHTML = '';
+                meldungDiv.className = 'p-3 text-sm font-semibold text-red-700 bg-red-100 rounded-lg';
+                meldungDiv.textContent = 'Bitte gültige Werte für Gewicht und Größe eingeben.';
+                return;
+            }
+
+            // Größe von cm in Meter umrechnen
+            const groesseM = groesseCm / 100;
+
+            // BMI-Formel: Gewicht / (Größe in m)^2
+            const bmi = gewicht / (groesseM * groesseM);
+
+            // BMI auf zwei Dezimalstellen runden
+            const gerundeterBmi = bmi.toFixed(2);
+
+            // Klassifizierung abrufen
+            const { category, color } = getBmiClassification(bmi);
+
+            // Ergebnis im HTML anzeigen
+            ergebnisDiv.innerHTML = `Ihr BMI beträgt: <span class="text-3xl font-bold ${color}">${gerundeterBmi}</span>`;
+            
+            // Meldung mit Interpretation anzeigen
+            meldungDiv.className = `p-4 mt-4 text-center font-semibold rounded-xl shadow-md bg-white`;
+            meldungDiv.innerHTML = `<p class="text-xl">Klassifikation:</p><p class="text-2xl font-extrabold ${color}">${category}</p>`;
+        }
+    </script>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-md bg-white p-6 md:p-8 rounded-2xl shadow-2xl">
+        
+        <h1 class="text-3xl font-extrabold text-gray-800 text-center mb-6">BMI Rechner</h1>
+        <p class="text-center text-gray-500 mb-8">Berechnen Sie schnell und einfach Ihren Body-Mass-Index.</p>
+
+        <div class="space-y-4">
+            <div>
+                <label for="gewicht" class="block text-sm font-medium text-gray-700 mb-1">Gewicht (kg)</label>
+                <input type="number" id="gewicht" placeholder="z.B. 75" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-primary focus:border-primary transition duration-150" required>
+            </div>
+
+            <div>
+                <label for="groesse" class="block text-sm font-medium text-gray-700 mb-1">Körpergröße (cm)</label>
+                <input type="number" id="groesse" placeholder="z.B. 175" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-primary focus:border-primary transition duration-150" required>
+            </div>
+        </div>
+
+        <button onclick="berechneBmi()" 
+                class="mt-8 w-full py-3 bg-primary text-white font-bold text-lg rounded-xl shadow-lg hover:bg-emerald-600 transition duration-300 transform hover:scale-[1.01] focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50">
+            BMI berechnen
+        </button>
+
+        <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+            <div id="ergebnis" class="text-gray-600 text-xl mb-4 min-h-[30px]">
+                </div>
+            
+            <div id="meldung" class="min-h-[100px] flex flex-col justify-center items-center">
+                <p class="text-gray-400">Geben Sie Ihre Daten ein, um Ihren BMI zu sehen.</p>
+                <p class="text-gray-400"><a href="https://www.cherware.de/">created by cherware.de, 2025</a></p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
