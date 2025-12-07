@@ -27,24 +27,23 @@
 
         // Funktion zur Klassifizierung des BMI und zur Auswahl der Farbe
         function getBmiClassification(bmi) {
-            let category = '';
-            let color = '';
+            const bmiCategories = [
+                { limit: 18.5, label: 'Untergewicht', color: 'text-blue-500' },
+                { limit: 25, label: 'Normalgewicht', color: 'text-primary' }, /* Grün */
+                { limit: 30, label: 'Übergewicht', color: 'text-secondary' }, /* Orange */
+                { label: 'Adipositas', color: 'text-red-600' }
+            ];
 
-            if (bmi < 18.5) {
-                category = 'Untergewicht';
-                color = 'text-blue-500';
-            } else if (bmi >= 18.5 && bmi <= 24.9) {
-                category = 'Normalgewicht';
-                color = 'text-primary'; /* Grün */
-            } else if (bmi >= 25.0 && bmi <= 29.9) {
-                category = 'Übergewicht';
-                color = 'text-secondary'; /* Orange */
-            } else {
-                category = 'Adipositas';
-                color = 'text-red-600';
+            let selectedCategory = bmiCategories[bmiCategories.length - 1];
+
+            for (const category of bmiCategories) {
+                if (category.limit !== undefined && bmi < category.limit) {
+                    selectedCategory = category;
+                    break;
+                }
             }
 
-            return { category, color };
+            return { category: selectedCategory.label, color: selectedCategory.color };
         }
 
         // Hauptfunktion zur Berechnung und Anzeige des BMI
