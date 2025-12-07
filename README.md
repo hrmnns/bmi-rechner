@@ -36,6 +36,13 @@ Diese Web-App entstand im Rahmen des folgenden **Blogbeitrags:** https://www.che
 
 Keine Installation notwendig.
 
+## Kurzer Smoke-Test (lokal)
+
+1. Repository klonen oder herunterladen und die `index.html` im Browser öffnen (kein Build nötig).
+2. Gültige Werte eingeben (z. B. 180 cm, 75 kg) und prüfen, dass BMI-Wert und Kategorie angezeigt werden.
+3. Seite neu laden und sicherstellen, dass die zuletzt eingegebenen Werte automatisch wiederhergestellt werden.
+4. Auf **„Eingaben zurücksetzen“** klicken und kontrollieren, dass Felder, Anzeige und lokale Speicherung gelöscht werden.
+
 ## Hinweise
 
 - Minimalistisches, kartenbasiertes UI mit modernen Buttons.
