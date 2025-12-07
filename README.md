@@ -18,11 +18,25 @@ Diese Web-App entstand im Rahmen des folgenden **Blogbeitrags:** https://www.che
 - Automatische Einordnung in etablierte Kategorien (z. B. Normalgewicht, Übergewicht)
 - Klar strukturierte und benutzerfreundliche Oberfläche
 - Läuft vollständig im Browser (kein Server, kein Tracking)
+- Speichert eingegebene Werte (Gewicht und Größe) lokal und stellt sie beim nächsten Aufruf automatisch wieder her
+- Bietet einen "Eingaben zurücksetzen"-Button, der Felder leert, lokale Daten löscht und den Hinweistext zurücksetzt
+
+## Bedienung
+
+- Körpergröße in Zentimetern und Gewicht in Kilogramm eingeben.
+- Der BMI-Wert und die Kategorie werden unmittelbar angezeigt.
+- Beim erneuten Öffnen werden die letzten Eingaben automatisch geladen und neu berechnet.
+- Mit dem Button "Eingaben zurücksetzen" lassen sich Felder und gespeicherte Daten in einem Schritt löschen.
 
 ## Technologie
 
 - **HTML**
-- **CSS**
+- **CSS** (Tailwind via CDN)
 - **JavaScript (client-side only)**
 
 Keine Installation notwendig.
+
+## Hinweise
+
+- Minimalistisches, kartenbasiertes UI mit modernen Buttons.
+- Footer-Hinweis: "created by cherware.de, 2025".
