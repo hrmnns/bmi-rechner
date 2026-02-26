@@ -10,7 +10,7 @@ Die App ermöglicht die Eingabe von Körpergröße und Gewicht und liefert auf d
 Der **Body-Mass-Index** ist ein verbreiteter Kennwert zur groben Einschätzung des Körpergewichts im Verhältnis zur Körpergröße.  
 Er wird häufig verwendet, um mögliche Risiken in Bezug auf Über- oder Untergewicht zu erkennen.
 
-Diese Web-App entstand im Rahmen des folgenden **Blogbeitrags:** https://www.cherware.de/reflect-it/807/
+Diese Web-App entstand im Rahmen des folgenden **Blogbeitrags:** [Apps bauen mit Google Gemini Canvas](https://www.cherware.de/apps-bauen-mit-google-gemini-canvas/)
 
 ## Features
 
